@@ -9,10 +9,11 @@ docker run --name goatcounter \
   -p 8080:8080 \
   -e GOATCOUNTER_DOMAIN=stats.domain.com \
   -e GOATCOUNTER_EMAIL=admin@domain.com \
+  -v /opt/goatcounter:/goatcounter/db
   ghcr.io/tigattack/goatcounter
 ```
 
-This command will start a single instance running on port 8080 with a site named `stats.domain.com`.
+This command will start a single instance running on port 8080 with a site named `stats.domain.com` and map the database path to `/opt/goatcounter` on the host machine.
 
 `GOATCOUNTER_DOMAIN` and `GOATCOUNTER_EMAIL` are mandatory.
 
