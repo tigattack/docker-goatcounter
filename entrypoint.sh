@@ -2,7 +2,7 @@
 
 set -eu
 
-if ! goatcounter db test >/dev/null 2>&1; then
+if ! goatcounter db show sites -find "$GOATCOUNTER_DOMAIN" >/dev/null 2>&1; then
   echo "No database found; Creating database"
   goatcounter db create site \
     -createdb \
