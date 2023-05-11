@@ -6,12 +6,13 @@ Unofficial Docker image for [goatcounter](https://github.com/arp242/goatcounter)
 
 ```bash
 docker run --name goatcounter \
+  -p 8080:8080 \
   -e GOATCOUNTER_DOMAIN=stats.domain.com \
   -e GOATCOUNTER_EMAIL=admin@domain.com \
   ghcr.io/tigattack/goatcounter
 ```
 
-This command will start a single instance with a site named `stats.domain.com`.
+This command will start a single instance running on port 8080 with a site named `stats.domain.com`.
 
 `GOATCOUNTER_DOMAIN` and `GOATCOUNTER_EMAIL` are mandatory.
 
