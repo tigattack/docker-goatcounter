@@ -1,6 +1,6 @@
-# baethon/goatcounter
+# Goatcounter Docker
 
-Unofficial Docker image for [goatcounter](https://github.com/zgoat/goatcounter) - simple web statistics
+Unofficial Docker image for [goatcounter](https://github.com/arp242/goatcounter) - simple web statistics
 
 ## How to use this image
 
@@ -8,10 +8,10 @@ Unofficial Docker image for [goatcounter](https://github.com/zgoat/goatcounter) 
 docker run --name goatcounter \
   -e GOATCOUNTER_DOMAIN=stats.domain.com \
   -e GOATCOUNTER_EMAIL=admin@domain.com \
-  baethon/goatcounter
+  ghcr.io/tigattack/goatcounter
 ```
 
-This command will start a single instance with pre-configured `stats.domain.com` site.
+This command will start a single instance with a site named `stats.domain.com`.
 
 `GOATCOUNTER_DOMAIN` and `GOATCOUNTER_EMAIL` are mandatory.
 
@@ -49,6 +49,14 @@ Don't change this value unless you know what you're doing.
 
 _Default:_ `sqlite:///goatcounter/db/goatconter.sqlite3`
 
+### `TZ`
+
+This optional environment variables defines the timezone in the container.
+
+Examples: `Europe/London`, `America/New_York`, etc.
+
+_Default:_ `UTC`
+
 ## Troubleshooting
 
 ### The server displays migration info
@@ -57,8 +65,8 @@ During startup, the container will try to execute all available migrations. What
 
 ### line X: GOATCOUNTER_*: unbound variable
 
-You forgot to set one of the mandatory env variables.
+You forgot to set one of the mandatory environment variables.
 
-### zdb.TX fn: cname: already exists.
+## Local build
 
-The entrypoint script tries to create the initial site on every container startup. Once it's created, the `goatcounter create` command will report this error. It's safe to ignore it.
+`docker build -t goatcounter --build-arg GOATCOUNTER_VERSION=$(cat version) .`
