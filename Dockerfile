@@ -18,7 +18,7 @@ ENV TZ='Etc/UTC'
 WORKDIR /goatcounter
 
 RUN apt update &&\
-  apt install -y ca-certificates &&\
+  apt install -y ca-certificates curl &&\
   update-ca-certificates --fresh &&\
   rm -rf /var/lib/apt/lists/* /var/cache/*
 
