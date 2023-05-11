@@ -55,7 +55,7 @@ This optional environment variables defines the timezone in the container.
 
 Examples: `Europe/London`, `America/New_York`, etc.
 
-_Default:_ `UTC`
+_Default:_ `Etc/UTC`
 
 ## Troubleshooting
 
