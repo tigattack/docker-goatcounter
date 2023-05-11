@@ -41,5 +41,7 @@ jobs:
         with:
           build-args: GOATCOUNTER_VERSION=${{ env.GOATCOUNTER_VERSION }}
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.GOATCOUNTER_VERSION }}
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.GOATCOUNTER_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
