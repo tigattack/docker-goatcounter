@@ -18,7 +18,7 @@ RUN apt update &&\
   rm -rf /var/lib/apt/lists/* /var/cache/*
 
 ENV GOATCOUNTER_LISTEN '0.0.0.0:8080'
-ENV GOATCOUNTER_DB 'sqlite:///goatcounter/db/goatcounter.sqlite3'
+ENV GOATCOUNTER_DB 'sqlite+/goatcounter/db/goatcounter.sqlite3'
 ENV GOATCOUNTER_SMTP ''
 
 COPY --from=download --chmod=0755 /goatcounter /usr/bin/goatcounter
