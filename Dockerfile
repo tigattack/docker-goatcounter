@@ -30,7 +30,7 @@ VOLUME ["/goatcounter/db"]
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s \
-  CMD curl -f http://localhost:8080 || exit 1   
+  CMD curl -f -H "Host: $GOATCOUNTER_DOMAIN" http://localhost:8080 || exit 1
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/goatcounter/goatcounter.sh"]
