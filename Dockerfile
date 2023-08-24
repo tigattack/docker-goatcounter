@@ -1,15 +1,18 @@
-FROM debian:bullseye-slim as download
+FROM --platform=$BUILDPLATFORM debian:bullseye-slim as download
 
-ARG GOATCOUNTER_VERSION
+ARG TARGETPLATFORM
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update &&\
+RUN arch=$(echo "$TARGETPLATFORM" | sed -E 's/(linux)\/(arm|amd)64.*/\1-\264/') &&\
+  apt update &&\
   apt install -y wget &&\
-  wget "https://github.com/arp242/goatcounter/releases/download/$GOATCOUNTER_VERSION/goatcounter-$GOATCOUNTER_VERSION-linux-amd64.gz" &&\
-  gzip -d "goatcounter-$GOATCOUNTER_VERSION-linux-amd64.gz" &&\
-  mv "goatcounter-$GOATCOUNTER_VERSION-linux-amd64" /goatcounter
+  wget "https://github.com/arp242/goatcounter/releases/download/$GOATCOUNTER_VERSION/goatcounter-$GOATCOUNTER_VERSION-$arch.gz" &&\
+  gzip -d "goatcounter-$GOATCOUNTER_VERSION-$arch.gz" &&\
+  mv "goatcounter-$GOATCOUNTER_VERSION-$arch" /goatcounter
 
-FROM debian:bullseye-slim
+FROM --platform=$BUILDPLATFORM debian:bullseye-slim
 
+ENV DEBIAN_FRONTEND=noninteractive
 ENV GOATCOUNTER_LISTEN='0.0.0.0:8080'
 ENV GOATCOUNTER_DB='sqlite+/goatcounter/db/goatcounter.sqlite3'
 ENV GOATCOUNTER_SMTP=''
