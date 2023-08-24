@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM debian:bullseye-slim as download
+FROM --platform=$BUILDPLATFORM debian:bookworm-slim as download
 
 ARG TARGETPLATFORM
 ENV DEBIAN_FRONTEND=noninteractive
@@ -12,7 +12,7 @@ RUN arch=$(echo "$TARGETPLATFORM" | sed -E 's/(linux)\/(arm|amd)64.*/\1-\264/') 
   gzip -d "goatcounter-$GOATCOUNTER_VERSION-$arch.gz" &&\
   mv "goatcounter-$GOATCOUNTER_VERSION-$arch" /goatcounter
 
-FROM --platform=$BUILDPLATFORM debian:bullseye-slim
+FROM --platform=$BUILDPLATFORM debian:bookworm-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV GOATCOUNTER_LISTEN='0.0.0.0:8080'
