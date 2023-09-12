@@ -40,7 +40,7 @@ jobs:
         run: echo "GOATCOUNTER_VERSION=$(cat Dockerfile | grep -oP '(?<=ARG GOATCOUNTER_VERSION=)(.*)')" >> $GITHUB_ENV
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           push: true
           tags: |
