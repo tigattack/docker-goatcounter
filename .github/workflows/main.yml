@@ -44,7 +44,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: ${{ github.ref == format('refs/heads/{0}', 'main') }}
-          tags: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           annotations: ${{ steps.meta.outputs.annotations }}
           platforms: linux/amd64,linux/arm64
