@@ -3,7 +3,7 @@ FROM --platform=$BUILDPLATFORM debian:bookworm-slim as download
 ARG TARGETPLATFORM
 ENV DEBIAN_FRONTEND=noninteractive
 # renovate: datasource=github-releases depName=arp242/goatcounter
-ARG GOATCOUNTER_VERSION=v2.4.1
+ARG GOATCOUNTER_VERSION=v2.5.0
 
 RUN arch=$(echo "$TARGETPLATFORM" | sed -E 's/(linux)\/(arm|amd)64.*/\1-\264/') &&\
   apt update &&\
